@@ -1,0 +1,27 @@
+{
+  "name": "fipe-promise",
+  "version": "0.1.0",
+  "description": "Busca por dados de veiculos na tabela FIPE brasileira",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.spec.js"
+  },
+  "keywords": [
+    "fipe",
+    "veiculos",
+    "valores",
+    "carros",
+    "motos",
+    "caminhoes",
+    "preco"
+  ],
+  "author": "Deivid Fortuna",
+  "license": "MIT",
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1"
+  }
+}
