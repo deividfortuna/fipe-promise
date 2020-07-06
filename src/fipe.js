@@ -1,11 +1,12 @@
-const service = require('./services/parallelum-api');
+import service from './services/parallelum-api';
 
 const types = { TRUCKS: 'caminhoes', CARS: 'carros', MOTORCYCLES: 'motos' };
-module.exports = {
-  fetchBrands: (vehicleType = types.CARS) => service.fetchBrands(vehicleType),
-  fetchVeiculos: () => { throw 'Not Implemented' },
-  fetchModels: () => { throw 'Not Implemented' },
-  fetchYears: () => { throw 'Not Implemented' },
-  fetchDetail: () => { throw 'Not Implemented' },
+
+export { types };
+export default (vehicleType = types.CARS) => ({
+  fetchBrands: () => service.fetchBrands(vehicleType),
+  fetchModels: (brand) => service.fetchModels(vehicleType, brand),
+  fetchYears: (brand, model) => { throw 'Not Implemented' },
+  fetchDetail: (brand, model, year) => { throw 'Not Implemented' },
   types
-}
+});

@@ -4,7 +4,8 @@
   "description": "Busca por dados de veiculos na tabela FIPE brasileira",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.spec.js"
+    "start": "babel-node index.js",
+    "test": "mocha --require @babel/register test/**/*.spec.js"
   },
   "keywords": [
     "fipe",
@@ -21,6 +22,9 @@
     "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
     "chai": "^4.2.0",
     "mocha": "^8.0.1",
     "nock": "^13.0.2"

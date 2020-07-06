@@ -1,17 +1,24 @@
 'use strict'
 
-const fetch = require('isomorphic-unfetch');
+import fetch from 'isomorphic-unfetch';
+
 const BASE_URL = 'https://parallelum.com.br/fipe/api/v1/';
+const headers = { 'Content-Type': 'application/json', 'cache-control': 'no-cache' };
 
 const fetchBrands = (vehicleType) => {
   const url = `${BASE_URL}${vehicleType}/marcas`;
-  const options = {
-    headers: { 'Content-Type': 'application/json', 'cache-control': 'no-cache' }
-  };
+  const options = { headers };
 
-  return fetch(url, options)
-    .then(parseResponse);
+  return fetch(url, options).then(parseResponse);
 };
+
+const fetchModels = (vehicleType, brand) => {
+  const url = `${BASE_URL}${vehicleType}/marcas/${brand}/modelos`;
+  const options = { headers };
+
+  return fetch(url, options).then(parseResponse)
+    .then(response => response.modelos);
+}
 
 function parseResponse(response) {
   if (response.ok) {
@@ -21,4 +28,4 @@ function parseResponse(response) {
   throw 'Not implemented';
 }
 
-module.exports = { fetchBrands };
+export default { fetchBrands, fetchModels };
