@@ -2,6 +2,7 @@ import chai from 'chai';
 import nock from 'nock';
 
 import fipe from '../../src/fipe';
+import { types } from '../../src/fipe';
 
 const fipeCars = fipe();
 const expect = chai.expect;
@@ -19,10 +20,10 @@ describe('fipe', () => {
       expect(types.TRUCKS).to.be.eq('caminhoes');
       expect(types.CARS).to.be.eq('carros');
       expect(types.MOTORCYCLES).to.be.eq('motos');
-    })
+    });
   });
 
-  describe('when brands is called for cars', () => {
+  describe('when brands method is called for cars', () => {
     it('should return a promise', () => {
       nock('https://parallelum.com.br')
         .get('/fipe/api/v1/carros/marcas')
@@ -35,17 +36,41 @@ describe('fipe', () => {
     });
   });
 
-  describe('when mode is called for a specific brand', () => {
+  describe('when models method is called for a specific brand', () => {
     it('should return a promise', () => {
       nock('https://parallelum.com.br')
-        .get('/fipe/api/v1/carros/marcas/22/modelos')
+        .get('/fipe/api/v1/carros/marcas/59/modelos')
         .reply(200, []);
 
-      const brand = 22;
-      const models = fipeCars.fetchModels(brand);
+      const modelsPromise = fipeCars.fetchModels(59);
 
-      expect(models.then).to.be.a('function');
-      expect(models.catch).to.be.a('function');
+      expect(modelsPromise.then).to.be.a('function');
+      expect(modelsPromise.catch).to.be.a('function');
+    });
+
+    it('should throw an exception if brand is missing', () => {
+      expect(() => fipeCars.fetchModels()).to.throw('brandId is required');
+    });
+  });
+
+  describe('when years method is called for a specific model', () => {
+    it('should throw an exception if brand is missing', () => {
+      expect(() => fipeCars.fetchYears()).to.throw('brandId is required');
+    });
+
+    it('should throw an exception if model is missing', () => {
+      expect(() => fipeCars.fetchYears(59)).to.throw('modelId is required');
+    });
+
+    it('should return a promise', () => {
+      nock('https://parallelum.com.br')
+        .get('/fipe/api/v1/carros/marcas/59/modelos/5940/anos')
+        .reply(200, []);
+
+      const yearsPromise = fipeCars.fetchYears(59, 5940);
+
+      expect(yearsPromise.then).to.be.a('function');
+      expect(yearsPromise.catch).to.be.a('function');
     });
   });
 });
