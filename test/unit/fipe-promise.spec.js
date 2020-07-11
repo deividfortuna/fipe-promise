@@ -73,4 +73,17 @@ describe('fipe', () => {
       expect(yearsPromise.catch).to.be.a('function')
     })
   })
+
+  describe('when years method is called for a specific year', () => {
+    it('should return a promise', () => {
+      nock('https://parallelum.com.br')
+        .get('/fipe/api/v1/carros/marcas/59/modelos/5940/anos/2014-3')
+        .reply(200, [])
+
+      const yearsPromise = fipeCars.fetchDetail(59, 5940, '2014-3')
+
+      expect(yearsPromise.then).to.be.a('function')
+      expect(yearsPromise.catch).to.be.a('function')
+    })
+  })
 })

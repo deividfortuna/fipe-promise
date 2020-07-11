@@ -36,6 +36,17 @@ const fetchYears = (vehicleType, brandId, modelId) => {
   return fetch(url, options).then(parseResponse)
 }
 
+const fetchDetail = (vehicleType, brandId, modelId, yearId) => {
+if (!vehicleType) { throw 'vehicleType is required' };
+  if (!brandId) { throw 'brandId is required' };
+  if (!modelId) { throw 'modelId is required' };
+
+  const url = `${BASE_URL}${vehicleType}/marcas/${brandId}/modelos/${modelId}/anos/${yearId}`
+  const options = { headers }
+
+  return fetch(url, options).then(parseResponse)
+}
+
 function parseResponse (response) {
   if (response.ok) {
     return response.text()
@@ -44,4 +55,4 @@ function parseResponse (response) {
   throw 'Not implemented'
 }
 
-export default { fetchBrands, fetchModels, fetchYears }
+export default { fetchBrands, fetchModels, fetchYears, fetchDetail }
