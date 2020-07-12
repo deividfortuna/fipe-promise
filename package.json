@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
-    "test": "mocha --require @babel/register test/**/*.spec.js"
+    "test": "mocha --require @babel/register test/**/*.spec.js",
+    "build-browser": "rollup -c && uglifyjs dist/fipe-promise-browser.js -cm -o dist/fipe-promise-browser.min.js",
+    "build-node": "rollup -c && uglifyjs dist/fipe-promise.js -cm -o dist/fipe-promise.min.js",
+    "build": "npm run build-browser && npm run build-node"
   },
   "keywords": [
     "fipe",
@@ -23,10 +26,16 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
-    "@babel/node": "^7.10.4",
+    "@babel/helpers": "^7.0.0",
+    "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.10.4",
     "chai": "^4.2.0",
     "mocha": "^8.0.1",
-    "nock": "^13.0.2"
+    "nock": "^13.0.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "uglify-js": "^3.10.0"
   }
 }

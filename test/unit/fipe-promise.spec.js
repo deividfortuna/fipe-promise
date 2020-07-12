@@ -2,24 +2,22 @@ import chai from 'chai'
 import nock from 'nock'
 
 import fipe from '../../src/fipe'
-import vehicleTypes from '../../src/vehicle-types';
 
-const fipeCars = fipe()
 const expect = chai.expect
 
 describe('fipe', () => {
   describe('when imported', () => {
     it('should have the basic functions', () => {
-      expect(fipeCars.fetchBrands).to.be.a('function')
-      expect(fipeCars.fetchModels).to.be.a('function')
-      expect(fipeCars.fetchYears).to.be.a('function')
-      expect(fipeCars.fetchDetail).to.be.a('function')
+      expect(fipe.fetchBrands).to.be.a('function')
+      expect(fipe.fetchModels).to.be.a('function')
+      expect(fipe.fetchYears).to.be.a('function')
+      expect(fipe.fetchDetail).to.be.a('function')
     })
 
     it('should have the right types', () => {
-      expect(vehicleTypes.TRUCKS).to.be.eq('caminhoes')
-      expect(vehicleTypes.CARS).to.be.eq('carros')
-      expect(vehicleTypes.MOTORCYCLES).to.be.eq('motos')
+      expect(fipe.vehicleType.TRUCKS).to.be.eq('caminhoes')
+      expect(fipe.vehicleType.CARS).to.be.eq('carros')
+      expect(fipe.vehicleType.MOTORCYCLES).to.be.eq('motos')
     })
   })
 
@@ -29,7 +27,7 @@ describe('fipe', () => {
         .get('/fipe/api/v1/carros/marcas')
         .reply(200, [])
 
-      const brands = fipeCars.fetchBrands()
+      const brands = fipe.fetchBrands(fipe.vehicleType.CARS)
 
       expect(brands.then).to.be.a('function')
       expect(brands.catch).to.be.a('function')
@@ -42,24 +40,24 @@ describe('fipe', () => {
         .get('/fipe/api/v1/carros/marcas/59/modelos')
         .reply(200, [])
 
-      const modelsPromise = fipeCars.fetchModels(59)
+      const modelsPromise = fipe.fetchModels(fipe.vehicleType.CARS, 59)
 
       expect(modelsPromise.then).to.be.a('function')
       expect(modelsPromise.catch).to.be.a('function')
     })
 
     it('should throw an exception if brand is missing', () => {
-      expect(() => fipeCars.fetchModels()).to.throw('brandId is required')
+      expect(() => fipe.fetchModels(fipe.vehicleType.CARS)).to.throw('brandId is required')
     })
   })
 
   describe('when years method is called for a specific model', () => {
     it('should throw an exception if brand is missing', () => {
-      expect(() => fipeCars.fetchYears()).to.throw('brandId is required')
+      expect(() => fipe.fetchYears(fipe.vehicleType.CARS)).to.throw('brandId is required')
     })
 
     it('should throw an exception if model is missing', () => {
-      expect(() => fipeCars.fetchYears(59)).to.throw('modelId is required')
+      expect(() => fipe.fetchYears(fipe.vehicleType.CARS, 59)).to.throw('modelId is required')
     })
 
     it('should return a promise', () => {
@@ -67,7 +65,7 @@ describe('fipe', () => {
         .get('/fipe/api/v1/carros/marcas/59/modelos/5940/anos')
         .reply(200, [])
 
-      const yearsPromise = fipeCars.fetchYears(59, 5940)
+      const yearsPromise = fipe.fetchYears(fipe.vehicleType.CARS, 59, 5940)
 
       expect(yearsPromise.then).to.be.a('function')
       expect(yearsPromise.catch).to.be.a('function')
@@ -80,7 +78,7 @@ describe('fipe', () => {
         .get('/fipe/api/v1/carros/marcas/59/modelos/5940/anos/2014-3')
         .reply(200, [])
 
-      const yearsPromise = fipeCars.fetchDetail(59, 5940, '2014-3')
+      const yearsPromise = fipe.fetchDetail(fipe.vehicleType.CARS, 59, 5940, '2014-3')
 
       expect(yearsPromise.then).to.be.a('function')
       expect(yearsPromise.catch).to.be.a('function')

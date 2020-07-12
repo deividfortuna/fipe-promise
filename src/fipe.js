@@ -1,11 +1,13 @@
 'use strict'
 
 import service from './services/parallelum-api'
-import types from './vehicle-types';
 
-export default (vehicleType = types.CARS) => ({
-  fetchBrands: () => service.fetchBrands(vehicleType),
-  fetchModels: (brandId) => service.fetchModels(vehicleType, brandId),
-  fetchYears: (brandId, modelId) => service.fetchYears(vehicleType, brandId, modelId),
-  fetchDetail: (brandId, modelId, yearId) => service.fetchDetail(vehicleType, brandId, modelId, yearId)
-})
+const vehicleType = { TRUCKS: 'caminhoes', CARS: 'carros', MOTORCYCLES: 'motos' }
+
+export default {
+  fetchBrands: (type) => service.fetchBrands(type),
+  fetchModels: (type, brandId) => service.fetchModels(type, brandId),
+  fetchYears: (type, brandId, modelId) => service.fetchYears(type, brandId, modelId),
+  fetchDetail: (type, brandId, modelId, yearId) => service.fetchDetail(type, brandId, modelId, yearId),
+  vehicleType
+};

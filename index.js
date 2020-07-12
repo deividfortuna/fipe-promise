@@ -1,10 +1,6 @@
-import fipe from './src/fipe';
-import types from './src/vehicle-types';
+import fipe from './dist/fipe-promise';
 
-
-const fipeCars = fipe(types.CARS)
-
-// fipeCars.fetchBrands().then(result => console.log(result));
-// fipeCars.fetchModels(59).then(result => console.log(result));
-// fipeCars.fetchYears(59, 5940).then(result => console.log(result));
-fipeCars.fetchDetail(59, 5940, '2014-3').then(result => console.log(result));
+// fipe.fetchBrands(fipe.vehicleType.CARS).then(result => console.log(result));
+// fipe.fetchModels(fipe.vehicleType.CARS, 59).then(result => console.log(result));
+// fipe.fetchYears(fipe.vehicleType.CARS, 59, 5940).then(result => console.log(result));
+fipe.fetchDetail(fipe.vehicleType.CARS, 59, 5940, '2014-3').then(result => console.log(result));
