@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <script src="./dist/fipe-promise-browser.js"></script>
+    <script>
+      const fipeCars = fipe.fipe()
+
+      // fipeCars.fetchBrands().then(result => console.log(result));
+      // fipeCars.fetchModels(59).then(result => console.log(result));
+      // fipeCars.fetchYears(59, 5940).then(result => console.log(result));
+      fipeCars.fetchDetail(59, 5940, '2014-3').then(result => console.log(result));
+    </script>
+  </head>
+  <body></body>
+</html>
