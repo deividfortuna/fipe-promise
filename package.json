@@ -6,6 +6,7 @@
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha --require @babel/register test/**/*.spec.js",
+    "coverage": "cross-env NODE_ENV=test nyc mocha test/**/*.spec.js",
     "build-browser": "rollup -c && uglifyjs dist/fipe-promise-browser.js -cm -o dist/fipe-promise-browser.min.js",
     "build-node": "rollup -c && uglifyjs dist/fipe-promise.js -cm -o dist/fipe-promise.min.js",
     "build": "npm run build-browser && npm run build-node"
@@ -25,17 +26,31 @@
     "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.11.1",
     "@babel/helpers": "^7.0.0",
-    "@babel/node": "^7.0.0",
-    "@babel/preset-env": "^7.10.4",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "chai": "^4.2.0",
-    "mocha": "^8.0.1",
-    "nock": "^13.0.2",
-    "rollup": "^2.21.0",
+    "cross-env": "^7.0.2",
+    "mocha": "^8.1.1",
+    "nock": "^13.0.4",
+    "nyc": "^15.1.0",
+    "rollup": "^2.23.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "uglify-js": "^3.10.0"
+    "uglify-js": "^3.10.1"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }

@@ -22,6 +22,9 @@ describe('fipe', () => {
   })
 
   describe('when brands method is called for cars', () => {
+    it('should throw an exception if type is missing', () => {
+      expect(() => fipe.fetchBrands()).to.throw('vehicleType is required')
+    })
     it('should return a promise', () => {
       nock('https://parallelum.com.br')
         .get('/fipe/api/v1/carros/marcas')
@@ -46,12 +49,20 @@ describe('fipe', () => {
       expect(modelsPromise.catch).to.be.a('function')
     })
 
+    it('should throw an exception if type is missing', () => {
+      expect(() => fipe.fetchModels()).to.throw('vehicleType is required')
+    })
+
     it('should throw an exception if brand is missing', () => {
       expect(() => fipe.fetchModels(fipe.vehicleType.CARS)).to.throw('brandId is required')
     })
   })
 
   describe('when years method is called for a specific model', () => {
+    it('should throw an exception if type is missing', () => {
+      expect(() => fipe.fetchYears()).to.throw('vehicleType is required')
+    })
+
     it('should throw an exception if brand is missing', () => {
       expect(() => fipe.fetchYears(fipe.vehicleType.CARS)).to.throw('brandId is required')
     })
@@ -72,7 +83,23 @@ describe('fipe', () => {
     })
   })
 
-  describe('when years method is called for a specific year', () => {
+  describe('when details method is called for a vehicleType', () => {
+    it('should throw an exception if type is missing', () => {
+      expect(() => fipe.fetchDetail()).to.throw('vehicleType is required')
+    })
+
+    it('should throw an exception if brand is missing', () => {
+      expect(() => fipe.fetchDetail(fipe.vehicleType.CARS)).to.throw('brandId is required')
+    })
+
+    it('should throw an exception if model is missing', () => {
+      expect(() => fipe.fetchDetail(fipe.vehicleType.CARS, 59)).to.throw('modelId is required')
+    })
+
+    it('should throw an exception if year is missing', () => {
+      expect(() => fipe.fetchDetail(fipe.vehicleType.CARS, 59, 5940)).to.throw('yearId is required')
+    })
+
     it('should return a promise', () => {
       nock('https://parallelum.com.br')
         .get('/fipe/api/v1/carros/marcas/59/modelos/5940/anos/2014-3')

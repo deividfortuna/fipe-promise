@@ -1,8 +1,7 @@
 'use strict'
 
+import vehicleType from './fipe-types';
 import service from './services/parallelum-api'
-
-const vehicleType = { TRUCKS: 'caminhoes', CARS: 'carros', MOTORCYCLES: 'motos' }
 
 export default {
   fetchBrands: (type) => service.fetchBrands(type),

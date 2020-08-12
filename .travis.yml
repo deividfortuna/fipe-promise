@@ -7,4 +7,5 @@ node_js:
   - "10"
 
 after_script:
-
+  - npm install -g coveralls
+  - coveralls < coverage/lcov.info
