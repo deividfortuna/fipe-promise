@@ -2,7 +2,7 @@
   "name": "fipe-promise",
   "version": "0.1.0",
   "description": "Busca por dados de veiculos na tabela FIPE brasileira",
-  "main": "index.js",
+  "main": "dist/fipe-promise.min.js",
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha --require @babel/register test/**/*.spec.js",
@@ -60,5 +60,8 @@
     ],
     "sourceMap": false,
     "instrument": false
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
