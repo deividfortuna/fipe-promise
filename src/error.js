@@ -5,4 +5,4 @@ export default ({ message, type, errors } = {}) => ({
   message,
   type,
   errors
-});
+})

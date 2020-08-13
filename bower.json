@@ -1,0 +1,25 @@
+{
+  "name": "fipe-promise",
+  "description": "Busca por dados de veiculos na tabela FIPE brasileira",
+  "main": "dist/fipe-promise-browser.js",
+  "authors": [
+    "Deivid Fortuna"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "fipe",
+    "veiculos",
+    "valores",
+    "carros",
+    "motos",
+    "caminhoes",
+    "preco"
+  ],
+  "homepage": "https://github.com/deividfortuna/fipe-promise",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src",
+    "test"
+  ]
+}

@@ -1,6 +1,6 @@
 'use strict'
 
-import vehicleType from './fipe-types';
+import vehicleType from './fipe-types'
 import service from './services/parallelum-api'
 
 export default {
@@ -9,4 +9,4 @@ export default {
   fetchYears: (type, brandId, modelId) => service.fetchYears(type, brandId, modelId),
   fetchDetail: (type, brandId, modelId, yearId) => service.fetchDetail(type, brandId, modelId, yearId),
   vehicleType
-};
+}

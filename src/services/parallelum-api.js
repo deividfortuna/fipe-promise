@@ -1,7 +1,7 @@
 'use strict'
 
 import fetch from 'isomorphic-unfetch'
-import fipePromiseError from './../error';
+import fipePromiseError from './../error'
 
 const BASE_URL = 'https://parallelum.com.br/fipe/api/v1/'
 const headers = { 'Content-Type': 'application/json', 'cache-control': 'no-cache' }
@@ -54,12 +54,13 @@ const parseResponse = response => {
     return response.json()
   }
   throw fipePromiseError({
-    message: 'Connection Error with parallelum.com.br', errors: [{
+    message: 'Connection Error with parallelum.com.br',
+    errors: [{
       url: response.url,
       status: response.status,
       statusText: response.statusText
     }]
-  });
+  })
 }
 
 const throwError = (error) => {
@@ -67,7 +68,7 @@ const throwError = (error) => {
 }
 
 const throwMissingArgument = (message) => {
-  throw fipePromiseError({ message, type: 'MISSING_ARGUMENTS' });
+  throw fipePromiseError({ message, type: 'MISSING_ARGUMENTS' })
 }
 
 export default { fetchBrands, fetchModels, fetchYears, fetchDetail }

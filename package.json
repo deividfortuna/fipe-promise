@@ -11,6 +11,11 @@
     "build-node": "rollup -c && uglifyjs dist/fipe-promise.js -cm -o dist/fipe-promise.min.js",
     "build": "npm run build-browser && npm run build-node"
   },
+  "browser": "dist/fipe-promise-browser.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deividfortuna/fipe-promise.git"
+  },
   "keywords": [
     "fipe",
     "veiculos",
@@ -22,6 +27,9 @@
   ],
   "author": "Deivid Fortuna",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deividfortuna/fipe-promise/issues"
+  },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0"
   },
