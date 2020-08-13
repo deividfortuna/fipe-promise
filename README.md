@@ -42,7 +42,7 @@ $ npm install --save fipe-promise
 #### Bower
 
 ```
-$ bower install --save fipe-promise
+$ bower install --save deividfortuna/fipe-promise
 ```
 #### yarn
 
