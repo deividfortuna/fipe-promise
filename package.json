@@ -1,6 +1,6 @@
 {
   "name": "fipe-promise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Busca por dados de veiculos na tabela FIPE brasileira",
   "main": "dist/fipe-promise.min.js",
   "scripts": {
