@@ -128,4 +128,4 @@ Contribuições são sempre bem-vindas! Se você encontrar um bug ou tiver uma i
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT.
+Este projeto é licenciado sob a MIT License.
