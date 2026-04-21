@@ -26,6 +26,8 @@
   Busca por preços médios de veículos no mercado nacional utizando a Tabela Fipe disponíveis no site oficial. (Node.js e Browser)
 </p>
 
+> A partir da versão **2.0.0** esta biblioteca utiliza a [API v2 da Parallelum](https://fipe.parallelum.com.br/). Mudanças incompatíveis: a URL base agora é `https://fipe.parallelum.com.br/api/v2/`, os segmentos de caminho passaram a ser em inglês (`cars`, `motorcycles`, `trucks`) e a resposta de `fetchModels` agora é um array direto (antes era `{ modelos: [...] }`).
+
 ## Instalação
 
 #### Browser usando CDN
@@ -54,9 +56,18 @@ $ yarn add fipe-promise
 
 ## Uso
 
+Todos os métodos aceitam um último parâmetro opcional `options` com o seguinte formato:
+
+```js
+{
+  reference: 280,        // Código do mês de referência da tabela FIPE (opcional)
+  token: 'seu-token'     // X-Subscription-Token para aumentar o limite de requisições (opcional)
+}
+```
+
 #### Consultar marcas
 
-Para consultar as marcas disponíveis para um determinado tipo de veículo, utilize o método fetchBrands. O método recebe um parâmetro obrigatório: o tipo de veículo (carros, motos ou caminhões). Exemplo:
+Para consultar as marcas disponíveis para um determinado tipo de veículo, utilize o método fetchBrands. O método recebe um parâmetro obrigatório: o tipo de veículo (cars, motorcycles ou trucks). Exemplo:
 
 ```js
 fipe
@@ -112,6 +123,51 @@ fipe
   .catch((error) => {
     // Lide com o erro aqui
   });
+```
+
+#### Consultar tabelas de referência
+
+Retorna a lista de meses de referência disponíveis (`code` e `month`). Útil para passar o `code` como `options.reference` nas demais chamadas.
+
+```js
+fipe.fetchReferences().then((references) => {
+  // [{ code: '278', month: 'abril de 2024' }, ...]
+});
+```
+
+#### Consultar por código FIPE
+
+A API v2 permite consultar diretamente pelo código FIPE (ex.: `004278-1`), sem precisar navegar por marca e modelo.
+
+```js
+fipe
+  .fetchYearsByFipeCode(fipe.vehicleType.CARS, "004278-1")
+  .then((years) => { /* ... */ });
+
+fipe
+  .fetchDetailByFipeCode(fipe.vehicleType.CARS, "004278-1", "2014-3")
+  .then((detail) => { /* ... */ });
+```
+
+#### Histórico de preços
+
+Retorna os detalhes do veículo junto com o histórico de preços (`priceHistory`).
+
+```js
+fipe
+  .fetchPriceHistory(fipe.vehicleType.CARS, "004278-1", "2014-3")
+  .then((detail) => {
+    // detail.priceHistory => [{ month, price, reference }, ...]
+  });
+```
+
+#### Usando `reference` e `token`
+
+```js
+fipe.fetchBrands(fipe.vehicleType.CARS, {
+  reference: 278,
+  token: "seu-token-de-assinatura"
+});
 ```
 
 #### Exemplo Angular 2+
