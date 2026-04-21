@@ -1,11 +1,12 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import resolve from 'rollup-plugin-node-resolve'
+import { babel } from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 const input = 'src/fipe.js'
 const defaultPlugins = [
   babel({
     babelrc: false,
+    babelHelpers: 'bundled',
     presets: [['@babel/env', { modules: false }]]
   })
 ]
@@ -25,7 +26,7 @@ export default [
   {
     input,
     plugins: [].concat(defaultPlugins, [
-      resolve({
+      nodeResolve({
         browser: true
       }),
       commonjs()

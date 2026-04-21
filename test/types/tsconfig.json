@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+  },
+  "include": ["type-check.ts"]
+}
