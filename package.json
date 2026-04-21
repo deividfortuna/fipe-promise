@@ -3,9 +3,11 @@
   "version": "2.0.0",
   "description": "Busca por dados de veiculos na tabela FIPE brasileira",
   "main": "dist/fipe-promise.min.js",
+  "types": "index.d.ts",
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha --require @babel/register --file test/setup.js test/**/*.spec.js",
+    "test-types": "tsc --project test/types/tsconfig.json",
     "coverage": "cross-env NODE_ENV=test nyc mocha test/**/*.spec.js",
     "build-browser": "rollup -c && uglifyjs dist/fipe-promise-browser.js -cm -o dist/fipe-promise-browser.min.js",
     "build-node": "rollup -c && uglifyjs dist/fipe-promise.js -cm -o dist/fipe-promise.min.js",
@@ -48,6 +50,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "^5.9.3",
     "uglify-js": "^3.10.1"
   },
   "nyc": {
@@ -62,6 +65,7 @@
     "instrument": false
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ]
 }
