@@ -36,22 +36,21 @@
     "isomorphic-unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/helpers": "^7.0.0",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.0",
-    "babel-plugin-istanbul": "^6.0.0",
-    "chai": "^4.2.0",
-    "cross-env": "^7.0.2",
-    "mocha": "^8.1.1",
-    "nock": "^13.0.4",
-    "nyc": "^15.1.0",
-    "rollup": "^2.23.1",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "@babel/core": "^7.29.0",
+    "@babel/node": "^7.28.3",
+    "@babel/preset-env": "^7.29.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "babel-plugin-istanbul": "^8.0.0",
+    "chai": "^4.5.0",
+    "cross-env": "^10.1.0",
+    "mocha": "^11.7.5",
+    "nock": "^14.0.13",
+    "nyc": "^18.0.0",
+    "rollup": "^4.60.2",
     "typescript": "^5.9.3",
-    "uglify-js": "^3.10.1"
+    "uglify-js": "^3.19.3"
   },
   "nyc": {
     "require": [
