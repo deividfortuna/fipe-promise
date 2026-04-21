@@ -16,7 +16,7 @@
   "browser": "dist/fipe-promise-browser.min.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deividfortuna/fipe-promise.git"
+    "url": "git+https://github.com/deividfortuna/fipe-promise.git"
   },
   "keywords": [
     "fipe",
